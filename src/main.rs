@@ -1,15 +1,7 @@
-use std::fs::File;
-use std::io::prelude::*;
-use std::io::BufReader;
+mod day01;
+mod util;
 
-use clap::{App, Arg};
-
-fn is_numeric(value: String) -> Result<(), String> {
-    value
-        .parse::<i32>()
-        .map(|_parsed| ())
-        .map_err(|err| err.to_string())
-}
+use crate::day01::*;
 
 fn main() -> Result<(), String> {
     let problems = [
@@ -40,84 +32,18 @@ fn main() -> Result<(), String> {
         [problem25_a, problem25_b],
     ];
 
-    let matches = App::new("aoc2019")
-        .version("1.0")
-        .author("Aaron Stevens")
-        .about("Advent of Code 2019 solution runner")
-        .arg(
-            Arg::with_name("PROBLEM")
-                .help("The problem number to run")
-                .required(true)
-                .index(1)
-                .validator(is_numeric),
-        )
-        .arg(
-            Arg::with_name("PART")
-                .help("The problem part to run")
-                .possible_values(&["a", "b"])
-                .required(false)
-                .index(2),
-        )
-        .get_matches();
-
-    let problem = matches
-        .value_of("PROBLEM")
-        .unwrap()
-        .parse::<usize>()
-        .map_err(|err| err.to_string())?;
-    let part = matches.value_of("PART");
-    if part.is_some() {
-        let part_idx = if part.unwrap() == "a" { 0 } else { 1 };
-        let solution = problems[problem - 1][part_idx]()?;
-        println!("Solution {}{}: {}", problem, part.unwrap(), solution);
+    let args = util::get_arguments()?;
+    if args.part.is_some() {
+        let solution = problems[args.day - 1][args.part.unwrap()]()?;
+        println!("Solution {}: {}", args, solution);
     } else {
-        let solution_a = problems[problem - 1][0]()?;
-        println!("Solution {}a: {}", problem, solution_a);
-        let solution_b = problems[problem - 1][1]()?;
-        println!("Solution {}b: {}", problem, solution_b);
+        let solution_a = problems[args.day - 1][0]()?;
+        println!("Solution {}a: {}", args.day, solution_a);
+        let solution_b = problems[args.day - 1][1]()?;
+        println!("Solution {}b: {}", args.day, solution_b);
     }
 
     Ok(())
-}
-
-fn lines(filename: &str) -> Result<Vec<String>, String> {
-    let file = File::open(filename).map_err(|err| err.to_string())?;
-    Ok(BufReader::new(file)
-        .lines()
-        .filter_map(|line| line.ok())
-        .filter(|line| line.len() > 0)
-        .collect())
-}
-
-fn int_lines(filename: &str) -> Result<Vec<i64>, String> {
-    Ok(lines(filename)?
-        .iter()
-        .filter_map(|line| line.parse::<i64>().ok())
-        .collect())
-}
-
-fn problem01_a() -> Result<String, String> {
-    let total = int_lines("inputs/01.txt")?
-        .iter()
-        .map(|value| value / 3 - 2)
-        .sum::<i64>();
-    Ok(total.to_string())
-}
-
-fn problem01_b() -> Result<String, String> {
-    let total = int_lines("inputs/01.txt")?
-        .iter()
-        .map(|value| {
-            let mut module_total = 0;
-            let mut fuel = value / 3 - 2;
-            while fuel > 0 {
-                module_total += fuel;
-                fuel = fuel / 3 - 2;
-            }
-            module_total
-        })
-        .sum::<i64>();
-    Ok(total.to_string())
 }
 
 fn problem02_a() -> Result<String, String> {

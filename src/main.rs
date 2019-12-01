@@ -89,7 +89,6 @@ fn problem01_b() -> Result<String, String> {
     Ok(total.to_string())
 }
 
-
 #[cfg(test)]
 mod tests {
     extern crate test;

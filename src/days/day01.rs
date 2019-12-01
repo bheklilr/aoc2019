@@ -4,7 +4,7 @@ pub struct Module {
     pub mass: i64,
 }
 
-impl Module { 
+impl Module {
     pub fn new(mass: i64) -> Module {
         Module { mass: mass }
     }
@@ -14,7 +14,7 @@ impl Module {
     }
 
     pub fn fuel_for(mass: i64) -> i64 {
-        mass / 3 - 2
+        std::cmp::max(0, mass / 3 - 2)
     }
 }
 
@@ -32,27 +32,51 @@ impl Iterator for Module {
     }
 }
 
+fn solve_a(values: Vec<i64>) -> i64 {
+    values.iter().map(|value| Module::fuel_for(*value)).sum()
+}
+
 pub fn day01_a() -> Result<String, String> {
-    let total = int_lines("inputs/01.txt")?
+    Ok(solve_a(int_lines("inputs/01.txt")?).to_string())
+}
+
+fn solve_b(values: Vec<i64>) -> i64 {
+    values
         .iter()
-        .map(|value| Module::fuel_for(*value))
-        .sum::<i64>();
-    Ok(total.to_string())
+        .flat_map(|value| Module::new(*value).into_iter())
+        .sum()
 }
 
 pub fn day01_b() -> Result<String, String> {
-    let total = int_lines("inputs/01.txt")?
-        .iter()
-        .flat_map(|value| Module::new(*value).into_iter())
-        .sum::<i64>();
-    Ok(total.to_string())
+    Ok(solve_b(int_lines("inputs/01.txt")?).to_string())
 }
 
 #[cfg(test)]
 mod test {
     extern crate test;
-    use test::Bencher;
     use super::*;
+    use test::Bencher;
+
+    #[test]
+    fn test_solve_a() -> Result<(), String> {
+        assert_eq!(solve_a(vec![0, 1, 2, 3]), 0);
+        assert_eq!(solve_a(vec![12]), 2);
+        assert_eq!(solve_a(vec![14]), 2);
+        assert_eq!(solve_a(vec![1969]), 654);
+        assert_eq!(solve_a(vec![100756]), 33583);
+        assert_eq!(solve_a(int_lines("inputs/01.txt")?), 3325347);
+        Ok(())
+    }
+
+    #[test]
+    fn test_solve_b() -> Result<(), String> {
+        assert_eq!(solve_b(vec![0, 1, 2, 3]), 0);
+        assert_eq!(solve_b(vec![14]), 2);
+        assert_eq!(solve_b(vec![1969]), 966);
+        assert_eq!(solve_b(vec![100756]), 50346);
+        assert_eq!(solve_b(int_lines("inputs/01.txt")?), 4985145);
+        Ok(())
+    }
 
     #[bench]
     fn bench_day01_a(b: &mut Bencher) {

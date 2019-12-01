@@ -47,3 +47,20 @@ pub fn day01_b() -> Result<String, String> {
         .sum::<i64>();
     Ok(total.to_string())
 }
+
+#[cfg(test)]
+mod test {
+    extern crate test;
+    use test::Bencher;
+    use super::*;
+
+    #[bench]
+    fn bench_day01_a(b: &mut Bencher) {
+        b.iter(day01_a);
+    }
+
+    #[bench]
+    fn bench_day01_b(b: &mut Bencher) {
+        b.iter(day01_b);
+    }
+}

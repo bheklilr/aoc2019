@@ -1,3 +1,4 @@
+#![feature(test)]
 mod days;
 mod util;
 

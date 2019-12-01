@@ -31,7 +31,6 @@ fn main() -> Result<(), String> {
                 .help("The problem part to run")
                 .possible_values(&["a", "b"])
                 .required(false)
-                .default_value("a")
                 .index(2),
         )
         .get_matches();
@@ -41,11 +40,18 @@ fn main() -> Result<(), String> {
         .unwrap()
         .parse::<usize>()
         .map_err(|err| err.to_string())?;
-    let part = matches.value_of("PART").unwrap_or("a");
-    let part_idx = if part == "a" { 0 } else { 1 };
+    let part = matches.value_of("PART");
+    if part.is_some() {
+        let part_idx = if part.unwrap() == "a" { 0 } else { 1 };
+        let solution = problems[problem - 1][part_idx]()?;
+        println!("Solution {}{}: {}", problem, part.unwrap(), solution);
+    } else {
+        let solution_a = problems[problem - 1][0]()?;
+        println!("Solution {}a: {}", problem, solution_a);
+        let solution_b = problems[problem - 1][1]()?;
+        println!("Solution {}b: {}", problem, solution_b);
+    }
 
-    let solution = problems[problem - 1][part_idx]()?;
-    println!("Solution: {}", solution);
     Ok(())
 }
 

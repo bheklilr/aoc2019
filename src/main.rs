@@ -1,7 +1,55 @@
 mod day01;
+mod day02;
+mod day03;
+mod day04;
+mod day05;
+mod day06;
+mod day07;
+mod day08;
+mod day09;
+mod day10;
+mod day11;
+mod day12;
+mod day13;
+mod day14;
+mod day15;
+mod day16;
+mod day17;
+mod day18;
+mod day19;
+mod day20;
+mod day21;
+mod day22;
+mod day23;
+mod day24;
+mod day25;
 mod util;
 
-use crate::day01::*;
+use day01::*;
+use day02::*;
+use day03::*;
+use day04::*;
+use day05::*;
+use day06::*;
+use day07::*;
+use day08::*;
+use day09::*;
+use day10::*;
+use day11::*;
+use day12::*;
+use day13::*;
+use day14::*;
+use day15::*;
+use day16::*;
+use day17::*;
+use day18::*;
+use day19::*;
+use day20::*;
+use day21::*;
+use day22::*;
+use day23::*;
+use day24::*;
+use day25::*;
 
 fn main() -> Result<(), String> {
     let problems = [
@@ -44,196 +92,4 @@ fn main() -> Result<(), String> {
     }
 
     Ok(())
-}
-
-fn problem02_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem02_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem03_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem03_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem04_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem04_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem05_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem05_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem06_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem06_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem07_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem07_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem08_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem08_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem09_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem09_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem10_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem10_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem11_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem11_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem12_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem12_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem13_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem13_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem14_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem14_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem15_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem15_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem16_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem16_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem17_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem17_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem18_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem18_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem19_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem19_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem20_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem20_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem21_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem21_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem22_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem22_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem23_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem23_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem24_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem24_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem25_a() -> Result<String, String> {
-    Err("Unsolved".to_string())
-}
-
-fn problem25_b() -> Result<String, String> {
-    Err("Unsolved".to_string())
 }

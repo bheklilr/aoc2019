@@ -1,6 +1,6 @@
 use crate::util::int_lines;
 
-pub fn problem01_a() -> Result<String, String> {
+pub fn day01_a() -> Result<String, String> {
     let total = int_lines("inputs/01.txt")?
         .iter()
         .map(|value| value / 3 - 2)
@@ -8,7 +8,7 @@ pub fn problem01_a() -> Result<String, String> {
     Ok(total.to_string())
 }
 
-pub fn problem01_b() -> Result<String, String> {
+pub fn day01_b() -> Result<String, String> {
     let total = int_lines("inputs/01.txt")?
         .iter()
         .map(|value| {

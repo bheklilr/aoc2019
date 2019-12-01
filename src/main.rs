@@ -52,42 +52,42 @@ use day24::*;
 use day25::*;
 
 fn main() -> Result<(), String> {
-    let problems = [
-        [problem01_a, problem01_b],
-        [problem02_a, problem02_b],
-        [problem03_a, problem03_b],
-        [problem04_a, problem04_b],
-        [problem05_a, problem05_b],
-        [problem06_a, problem06_b],
-        [problem07_a, problem07_b],
-        [problem08_a, problem08_b],
-        [problem09_a, problem09_b],
-        [problem10_a, problem10_b],
-        [problem11_a, problem11_b],
-        [problem12_a, problem12_b],
-        [problem13_a, problem13_b],
-        [problem14_a, problem14_b],
-        [problem15_a, problem15_b],
-        [problem16_a, problem16_b],
-        [problem17_a, problem17_b],
-        [problem18_a, problem18_b],
-        [problem19_a, problem19_b],
-        [problem20_a, problem20_b],
-        [problem21_a, problem21_b],
-        [problem22_a, problem22_b],
-        [problem23_a, problem23_b],
-        [problem24_a, problem24_b],
-        [problem25_a, problem25_b],
+    let days = [
+        [day01_a, day01_b],
+        [day02_a, day02_b],
+        [day03_a, day03_b],
+        [day04_a, day04_b],
+        [day05_a, day05_b],
+        [day06_a, day06_b],
+        [day07_a, day07_b],
+        [day08_a, day08_b],
+        [day09_a, day09_b],
+        [day10_a, day10_b],
+        [day11_a, day11_b],
+        [day12_a, day12_b],
+        [day13_a, day13_b],
+        [day14_a, day14_b],
+        [day15_a, day15_b],
+        [day16_a, day16_b],
+        [day17_a, day17_b],
+        [day18_a, day18_b],
+        [day19_a, day19_b],
+        [day20_a, day20_b],
+        [day21_a, day21_b],
+        [day22_a, day22_b],
+        [day23_a, day23_b],
+        [day24_a, day24_b],
+        [day25_a, day25_b],
     ];
 
     let args = util::get_arguments()?;
     if args.part.is_some() {
-        let solution = problems[args.day - 1][args.part.unwrap()]()?;
+        let solution = days[args.day - 1][args.part.unwrap()]()?;
         println!("Solution {}: {}", args, solution);
     } else {
-        let solution_a = problems[args.day - 1][0]()?;
+        let solution_a = days[args.day - 1][0]()?;
         println!("Solution {}a: {}", args.day, solution_a);
-        let solution_b = problems[args.day - 1][1]()?;
+        let solution_b = days[args.day - 1][1]()?;
         println!("Solution {}b: {}", args.day, solution_b);
     }
 

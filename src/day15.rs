@@ -1,7 +1,7 @@
-pub fn problem15_a() -> Result<String, String> {
+pub fn day15_a() -> Result<String, String> {
     Err("Unsolved".to_string())
 }
 
-pub fn problem15_b() -> Result<String, String> {
+pub fn day15_b() -> Result<String, String> {
     Err("Unsolved".to_string())
 }

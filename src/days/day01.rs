@@ -1,46 +1,45 @@
-use crate::util::int_lines;
+use crate::util::parsed_lines;
 
 pub struct Module {
-    pub mass: i64,
+    pub mass: u64,
 }
 
 impl Module {
-    pub fn new(mass: i64) -> Module {
+    pub fn new(mass: u64) -> Module {
         Module { mass: mass }
     }
 
-    pub fn fuel(&self) -> i64 {
-        Module::fuel_for(self.mass)
+    pub fn fuel_for(value: &u64) -> Option<u64> {
+        value.checked_div(3)?.checked_sub(2)
     }
 
-    pub fn fuel_for(mass: i64) -> i64 {
-        std::cmp::max(0, mass / 3 - 2)
+    pub fn fuel(&self) -> Option<u64> {
+        Module::fuel_for(&self.mass)
     }
 }
 
 impl Iterator for Module {
-    type Item = i64;
+    type Item = u64;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let f = self.fuel();
+        let f = self.fuel()?;
         self.mass = f;
-        if f > 0 {
-            Some(f)
-        } else {
-            None
-        }
+        Some(f)
     }
 }
 
-fn solve_a(values: &Vec<i64>) -> i64 {
-    values.iter().map(|value| Module::fuel_for(*value)).sum()
+fn solve_a(values: &Vec<u64>) -> u64 {
+    values
+        .iter()
+        .filter_map(|value| Module::fuel_for(value))
+        .sum()
 }
 
 pub fn day01_a() -> Result<String, String> {
-    Ok(solve_a(&int_lines("inputs/01.txt")?).to_string())
+    Ok(solve_a(&parsed_lines("inputs/01.txt")?).to_string())
 }
 
-fn solve_b(values: &Vec<i64>) -> i64 {
+fn solve_b(values: &Vec<u64>) -> u64 {
     values
         .iter()
         .flat_map(|value| Module::new(*value).into_iter())
@@ -48,7 +47,7 @@ fn solve_b(values: &Vec<i64>) -> i64 {
 }
 
 pub fn day01_b() -> Result<String, String> {
-    Ok(solve_b(&int_lines("inputs/01.txt")?).to_string())
+    Ok(solve_b(&parsed_lines("inputs/01.txt")?).to_string())
 }
 
 #[cfg(test)]
@@ -64,7 +63,7 @@ mod test {
         assert_eq!(solve_a(&vec![14]), 2);
         assert_eq!(solve_a(&vec![1969]), 654);
         assert_eq!(solve_a(&vec![100756]), 33583);
-        assert_eq!(solve_a(&int_lines("inputs/01.txt")?), 3325347);
+        assert_eq!(solve_a(&parsed_lines("inputs/01.txt")?), 3325347);
         Ok(())
     }
 
@@ -74,21 +73,31 @@ mod test {
         assert_eq!(solve_b(&vec![14]), 2);
         assert_eq!(solve_b(&vec![1969]), 966);
         assert_eq!(solve_b(&vec![100756]), 50346);
-        assert_eq!(solve_b(&int_lines("inputs/01.txt")?), 4985145);
+        assert_eq!(solve_b(&parsed_lines("inputs/01.txt")?), 4985145);
         Ok(())
     }
 
     #[bench]
     fn bench_solve_a(b: &mut Bencher) -> Result<(), String> {
-        let values = int_lines("inputs/01.txt")?;
+        let values = parsed_lines("inputs/01.txt")?;
         b.iter(|| solve_a(&values));
         Ok(())
     }
 
     #[bench]
     fn bench_solve_b(b: &mut Bencher) -> Result<(), String> {
-        let values = int_lines("inputs/01.txt")?;
+        let values = parsed_lines("inputs/01.txt")?;
         b.iter(|| solve_b(&values));
         Ok(())
+    }
+
+    #[bench]
+    fn bench_day01_a(b: &mut Bencher) {
+        b.iter(day01_a)
+    }
+
+    #[bench]
+    fn bench_day01_b(b: &mut Bencher) {
+        b.iter(day01_b)
     }
 }

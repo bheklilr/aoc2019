@@ -13,10 +13,6 @@ pub fn lines(filename: &str) -> Result<Vec<String>, String> {
         .collect())
 }
 
-pub fn int_lines(filename: &str) -> Result<Vec<i64>, String> {
-    parsed_lines(filename)
-}
-
 pub fn parsed_lines<T: std::str::FromStr>(filename: &str) -> Result<Vec<T>, String> {
     Ok(lines(filename)?
         .iter()
